@@ -1,0 +1,68 @@
+Student Marks Management Using Array
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Student Marks Management</h2>
+
+<form method="post">
+
+    Student Name:
+    <input type="text" name="name" required><br><br>
+
+    Mark 1:
+    <input type="number" name="mark1" required><br><br>
+
+    Mark 2:
+    <input type="number" name="mark2" required><br><br>
+
+    Mark 3:
+    <input type="number" name="mark3" required><br><br>
+
+    Mark 4:
+    <input type="number" name="mark4" required><br><br>
+
+    Mark 5:
+    <input type="number" name="mark5" required><br><br>
+
+    <input type="submit" value="Calculate">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST["name"];
+
+    $marks = array(
+        $_POST["mark1"],
+        $_POST["mark2"],
+        $_POST["mark3"],
+        $_POST["mark4"],
+        $_POST["mark5"]
+    );
+
+    $total = array_sum($marks);
+    $average = $total / count($marks);
+    $highest = max($marks);
+    $lowest = min($marks);
+
+    echo "<h3>Student Result</h3>";
+
+    echo "Student Name: $name<br><br>";
+
+    echo "Marks:<br>";
+
+    foreach ($marks as $mark) {
+        echo $mark . "<br>";
+    }
+
+    echo "<br>Total Marks: $total<br>";
+    echo "Average Marks: " .
+         number_format($average, 2) . "<br>";
+    echo "Highest Mark: $highest<br>";
+    echo "Lowest Mark: $lowest";
+}
+?>
+
+</body>
+</html>
