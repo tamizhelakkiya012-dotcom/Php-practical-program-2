@@ -1,0 +1,44 @@
+5. Employee Age and Retirement Calculator
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Employee Age and Retirement Calculator</h2>
+
+<form method="post">
+    Employee Name:
+    <input type="text" name="name" required><br><br>
+
+    Date of Birth:
+    <input type="date" name="dob" required><br><br>
+
+    <input type="submit" value="Calculate">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST["name"];
+    $dob = $_POST["dob"];
+    $retirement_age = 60;
+
+    $birthDate = new DateTime($dob);
+    $today = new DateTime();
+
+    $age = $today->diff($birthDate)->y;
+    $remaining = $retirement_age - $age;
+
+    echo "<h3>Result</h3>";
+    echo "Employee Name: $name<br>";
+    echo "Date of Birth: $dob<br>";
+    echo "Current Age: $age years<br>";
+
+    if ($remaining > 0)
+        echo "Years Remaining for Retirement: $remaining years";
+    else
+        echo "Employee has reached retirement age.";
+}
+?>
+
+</body>
+</html>
